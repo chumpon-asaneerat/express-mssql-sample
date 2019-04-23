@@ -1,0 +1,19 @@
+{
+  "name": "express-mssql-sample",
+  "version": "1.0.0",
+  "description": "express connect to mssql server sample",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chumpon-asaneerat/express-mssql-sample.git"
+  },
+  "author": "Chumpon Asaneerat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chumpon-asaneerat/express-mssql-sample/issues"
+  },
+  "homepage": "https://github.com/chumpon-asaneerat/express-mssql-sample#readme"
+}
