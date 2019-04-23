@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>DateTime and TimeSpan Wrappers</title>
+<style>
+	
+</style>
+<script src="datetime.1-1.js"></script>
+</head>
+
+<body>
+<h1>DateTime and TimeSpan Wrappers</h1>
+<p>API and documentation at: <a href="http://www.menendezpoo.com">www.menendezpoo.com</a></p>
+<script>
+	
+	
+	function w(a, b){
+		if(!a && !b){
+			document.write("<div>&nbsp;</div>");
+			return;
+		}
+		document.write("<div>" + a + ": <b>" + b + "</b></div>");
+	}
+	
+	
+	var now = new DateTime();
+	var t = new TimeSpan(50000000000);
+	
+	w("now = DateTime.now()", now);
+	w();
+	w("", "Data retrieval");
+	w("now.dayOfWeek()", now.dayOfWeek());
+	w("now.date()", now.date());
+	w("now.day()", now.day());
+	w("now.dayOfYear()", now.dayOfYear());
+	w("now.hour()", now.hour());
+	w("now.millisecond()", now.millisecond());
+	w("now.minute()", now.minute());
+	w("now.month()", now.month());
+	w("now.second()", now.second());
+	w("now.timeOfDay()", now.timeOfDay());
+	w("now.year()", now.year());
+	w();
+	w("", "Operations");
+	w("now.add(new TimeSpan(5000))", now.add(new TimeSpan(5000)));
+	w("now.addDays(7)", now.addDays(7));
+	w("now.addHours(24)", now.addHours(24));
+	w("now.addMilliseconds(1000)", now.addMilliseconds(1000));
+	w("now.addMinutes(60)", now.addMinutes(60));
+	w("now.addMonths(12)", now.addMonths(12));
+	w("now.addSeconds(60)", now.addSeconds(60));
+	w("now.addYears(1)", now.addYears(1));
+	w("now.compareTo(DateTime.utcNow())", now.compareTo(DateTime.utcNow()));
+	w("now.equals(DateTime.now())", now.equals(DateTime.now()));
+	w("now.subtractDate(DateTime.utcNow())", now.subtractDate(DateTime.utcNow()));
+	w("now.subtractTime(new TimeSpan(1000)", now.subtractTime(new TimeSpan(1000)));
+																		   
+	w();
+	w("", "Format");
+	w("now.format(dd/MMM/yyyy)", now.format("dd/MMM/yyyy"));
+	w("now.format(yyyy-MM-dd)", now.format("yyyy-MM-dd"));
+	w("now.format(ddd dd MMMM yyyy)", now.format("ddd dd MMMM yyyy"));
+	w("now.format(dddd dd MMMM yyyy, HH:ss)", now.format("dddd dd MMMM yyyy, HH:ss"));
+	w("now.format(hh:ss.f)", now.format("hh:ss.f"));
+	w("now.format(HH:ss tt)", now.format("HH:ss tt"));
+	w("now.format(HH:sst)", now.format("HH:sst"));
+	
+	
+	
+	w();
+	w("t = new TimeSpan(50000000000)", t);
+	w();
+	w("", "Data retrieval");
+	w("t.days()", t.days());
+	w("t.hours()", t.hours());
+	w("t.milliseconds()", t.milliseconds());
+	w("t.minutes()", t.minutes());
+	w("t.seconds()", t.seconds());
+	w("t.totalDays()", t.totalDays());
+	w("t.totalHours()", t.totalHours());
+	w("t.totalMilliseconds()", t.totalMilliseconds());
+	w("t.totalMinutes()", t.totalMinutes());
+	w("t.totalSeconds()", t.totalSeconds());
+	
+	w();
+	w("", "Operations");
+	w("t.add(new TimeSpan(9999999))", t.add(new TimeSpan(9999999)));
+	w("t.compareTo(DateTime.now().timeOfDay())", t.compareTo(DateTime.now().timeOfDay()));
+	w("t.negate()", t.negate());
+	w("t.subtract(DateTime.now().timeOfDay())", t.subtract(DateTime.now().timeOfDay()));
+	
+	
+</script>
+<p>API and documentation at: <a href="http://www.menendezpoo.com">www.menendezpoo.com</a></p>
+</body>
+</html>

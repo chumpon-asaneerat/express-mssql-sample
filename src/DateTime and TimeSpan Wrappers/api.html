@@ -1,0 +1,540 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>DateTime and TimeSpan Wrappers API</title>
+<style>
+	body {
+		font-family:Arial, Helvetica, sans-serif;
+	}
+	
+	table, th, td { border: solid 1p #999; border-collapse:collapse; }
+	
+	th { background-color:#333; color:white; }
+	
+</style>
+</head>
+
+<body>
+<ul>
+  <li>You may find the source code of the classes at: <a href="http://sourceforge.net/projects/jsdatetime">http://sourceforge.net/projects/jsdatetime</a></li>
+  <li>More Projects at <a href="http://www.menendezpoo.com">www.menendezpoo.com</a></li>
+</ul>
+<h1>DateTime Class</h1>
+<table width="100%" border="1" cellspacing="0" cellpadding="3" style="border-collapse:collapse">
+  <tr>
+    <th scope="col">Constructor</th>
+    <th scope="col">Description</th>
+  </tr>
+  <tr>
+    <td><code>DateTime(millseconds : int)</code></td>
+    <td>Creates a DateTime starting from the specified amount of millseconds.</td>
+  </tr>
+  <tr>
+    <td><code>DateTime(year : int, month : int, day : int)</code></td>
+    <td>Creates a DateTime for the specified date elements</td>
+  </tr>
+  <tr>
+    <td><code>DateTime(year : int, month : int, day : int, hour : int, minute : int, second : int)</code></td>
+    <td>Creates a DateTime for the specified date and time elements</td>
+  </tr>
+  <tr>
+    <td><code>DateTime(year : int, month : int, day : int, hour : int, minute : int, second : int)</code></td>
+    <td>Creates a DateTime for the specified date and time (with milliseconds) elements</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="3" style="border-collapse:collapse">
+  <tr>
+    <th scope="col">Static Method</th>
+    <th scope="col">Return Value</th>
+    <th scope="col">Description</th>
+  </tr>
+  <tr>
+    <td><code>DateTime.daysInMonth(year : int, month : int)</code></td>
+    <td><code>int</code></td>
+    <td>Returns the days of the specified month for the specified year.</td>
+  </tr>
+  <tr>
+    <td><code>DateTime.isLeapYear(year : int)</code></td>
+    <td><code>bool</code></td>
+    <td>Returns a boolean indicating if the specified year is leap year (February has 29 days)</td>
+  </tr>
+  <tr>
+    <td><code>DateTime.now()</code></td>
+    <td><code>DateTime</code></td>
+    <td>Returns the current date and time.</td>
+  </tr>
+  <tr>
+    <td><code>DateTime.today()</code></td>
+    <td><code>DateTime</code></td>
+    <td>Returns the current date, with zero time.</td>
+  </tr>
+  <tr>
+    <td><code>DateTime.utcNow()</code></td>
+    <td><code>DateTime</code></td>
+    <td>Returns the UTC (Previously called GMT) time.</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="3" style="border-collapse:collapse">
+  <tr>
+    <th scope="col">Method</th>
+    <th scope="col">Return Value</th>
+    <th scope="col">Description</th>
+  </tr>
+  <tr>
+    <td><code>add(time : TimeSpan)</code></td>
+    <td><code>DateTime</code></td>
+    <td>Adds the specified time to the date and returns the result.</td>
+  </tr>
+  <tr>
+    <td><code>addDays(days : int)</code></td>
+    <td><code>DateTime</code></td>
+    <td><p>Adds the specified amount of days to the date and returns the result.</p></td>
+  </tr>
+  <tr>
+    <td><code>addHours(hours : int)</code></td>
+    <td><code>DateTime</code></td>
+    <td><p>Adds the specified amount of hours to the date and returns the result.</p></td>
+  </tr>
+  <tr>
+    <td><code>addMilliseconds(millis : int)</code></td>
+    <td><code>DateTime</code></td>
+    <td>Adds the specified amount of milliseconds to the date and returns the result.</td>
+  </tr>
+  <tr>
+    <td><code>addMinutes(minutes: int)</code></td>
+    <td><code>DateTime</code></td>
+    <td>Adds the specified amount of minutes to the date and returns the result.</td>
+  </tr>
+  <tr>
+    <td><code>addMonths(months : int)</code></td>
+    <td><code>DateTime</code></td>
+    <td>Adds the specified amount of months to the date and returns the result.</td>
+  </tr>
+  <tr>
+    <td><code>addSeconds(seconds : int)</code></td>
+    <td><code>DateTime</code></td>
+    <td>Adds the specified amount of seconds to the date and returns the result.</td>
+  </tr>
+  <tr>
+    <td><code>addYears(years : int)</code></td>
+    <td><code>DateTime</code></td>
+    <td>Adds the specified amount of years to the date and returns the result.</td>
+  </tr>
+  <tr>
+    <td><code>compareTo(d : DateTime)</code></td>
+    <td><code>int</code></td>
+    <td>Returns -1, 0 or 1, depending on the compare result.</td>
+  </tr>
+  <tr>
+    <td valign="top"><code>date()</code></td>
+    <td valign="top"><code>DateTime</code></td>
+    <td>Returns just the date, with no time.</td>
+  </tr>
+  <tr>
+    <td valign="top"><code>day()</code></td>
+    <td valign="top"><code>int</code></td>
+    <td>Returns the day of the date.</td>
+  </tr>
+  <tr>
+    <td valign="top"><code>dayOfWeek()</code></td>
+    <td valign="top"><code>int</code></td>
+    <td>Returns the day of week. 1 = Monday to 7 = Sunday</td>
+  </tr>
+  <tr>
+    <td valign="top"><code>dayOfYear()</code></td>
+    <td valign="top"><code>int</code></td>
+    <td>Returns the day of year</td>
+  </tr>
+  <tr>
+    <td valign="top"><code>equals(d : DateTime)</code></td>
+    <td valign="top"><code>bool</code></td>
+    <td>Returns a value indicating if d is the same date.</td>
+  </tr>
+  <tr>
+    <td valign="top"><code>format(format : string)</code></td>
+    <td valign="top"><code>string</code></td>
+    <td><p>Returns a formatted date. Format is very similar to .NET's date time custom formatting:</p>
+      <ul>
+        <li><strong>d</strong> - Day of month, 1 to 31</li>
+        <li><strong>dd</strong> - Day of Month, 01 to 31</li>
+        <li><strong>ddd</strong> - Day of Week, Mon to Sun</li>
+        <li><strong>dddd</strong> - Day of Week, Monday to Sunday</li>
+        <li><strong>f</strong> - Millisecond / 100</li>
+        <li><strong>ff</strong> - Millisecond / 10</li>
+        <li><strong>fff</strong> - Millisecond</li>
+        <li><strong>h</strong> - Hour of day, 1 to 12</li>
+        <li><strong>hh</strong> - Hour of day, 01 to 12</li>
+        <li><strong>H</strong> - Hour of day, 1 to 23</li>
+        <li><strong>HH</strong> - Hour of day, 01 to 24</li>
+        <li><strong>m</strong> - Minute, 1 to 59</li>
+        <li><strong>mm</strong> - Minute, 01 to 59</li>
+        <li><strong>M</strong> - Month, 1 to 12</li>
+        <li><strong>MM</strong> - Month, 01 to 12</li>
+        <li><strong>MMM</strong> - Month, Jan to Dec</li>
+        <li><strong>MMMM</strong> - Month, January to December</li>
+        <li><strong>s</strong> - Second, 1 to 59</li>
+        <li><strong>ss</strong> - Second 01 to 59</li>
+        <li><strong>t</strong> - A or P</li>
+        <li><strong>tt</strong> - AM or PM</li>
+        <li><strong>yy</strong> - Year, 10</li>
+        <li><strong>yyyy</strong> - Year, 2010</li>
+        <li><strong>:</strong> - TimeSeparator</li>
+        <li><strong>/</strong> - DateSeparator</li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td><code>hour()</code></td>
+    <td><code>int</code></td>
+    <td>Gets the hour of the date.</td>
+  </tr>
+  <tr>
+    <td><code>millisecond()</code></td>
+    <td><code>int</code></td>
+    <td>Gets the millisecond of the date.</td>
+  </tr>
+  <tr>
+    <td><code>minute()</code></td>
+    <td><code>int</code></td>
+    <td>Gets the minute of the date.</td>
+  </tr>
+  <tr>
+    <td><code>month()</code></td>
+    <td><code>int</code></td>
+    <td>Gets the month of the date.</td>
+  </tr>
+  <tr>
+    <td><code>second()</code></td>
+    <td><code>int</code></td>
+    <td>Gets the second of the date.</td>
+  </tr>
+  <tr>
+    <td><code>subtractDate(d : DateTime)</code></td>
+    <td><code>TimeSpan</code></td>
+    <td>Subtracts the specified DateTime and returns the result TimeSpan.</td>
+  </tr>
+  <tr>
+    <td><code>subtractTime(t : TimeSpan)</code></td>
+    <td><code>DateTime</code></td>
+    <td>Subtracts the specified TimeSpan and returns the result DateTime.</td>
+  </tr>
+  <tr>
+    <td><code>timeOfDay()</code></td>
+    <td><code>TimeSpan</code></td>
+    <td>Gets just the time part of the date.</td>
+  </tr>
+  <tr>
+    <td><code>year()</code></td>
+    <td><code>int</code></td>
+    <td>Gets the year of the date.</td>
+  </tr>
+</table>
+<h1>Translation Strings</h1>
+<p>You may translate the strings of the class by changing the values of the following static properties:</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="3">
+  <tr>
+    <th scope="col">Property</th>
+    <th scope="col">Default Value</th>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.Mon</code></td>
+    <td>Mon</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.Monday</code></td>
+    <td>Monday</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.Tue</code></td>
+    <td>Tue</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.Tuesday</code></td>
+    <td>Tuesday</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.Wed</code></td>
+    <td>Wed</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.Wednesday</code></td>
+    <td>Wednesday</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.Thu</code></td>
+    <td>Thu</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.Thursday</code></td>
+    <td>Thursday</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.Fri</code></td>
+    <td>Fri</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.Friday</code></td>
+    <td>Friday</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.Sat</code></td>
+    <td>Sat</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.Saturday</code></td>
+    <td>Saturday</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.Sun</code></td>
+    <td>Sun</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.Sunday</code></td>
+    <td>Sunday</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.Jan</code></td>
+    <td>Jan</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.January</code></td>
+    <td>January</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.Feb</code></td>
+    <td>Feb</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.February</code></td>
+    <td>February</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.Mar</code></td>
+    <td>Mar</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.March</code></td>
+    <td>March</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.Apr</code></td>
+    <td>Apr</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.April</code></td>
+    <td>April</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.May</code></td>
+    <td>May</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.MayFull</code></td>
+    <td>May</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.Jun</code></td>
+    <td>Jun</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.June</code></td>
+    <td>June</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.Jul</code></td>
+    <td>Jul</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.July</code></td>
+    <td>July</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.Aug</code></td>
+    <td>Aug</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.August</code></td>
+    <td>August</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.Sep</code></td>
+    <td>Sep</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.September</code></td>
+    <td>September</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.Oct</code></td>
+    <td>Oct</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.October</code></td>
+    <td>October</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.Nov</code></td>
+    <td>Nov</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.November</code></td>
+    <td>November</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.Dec</code></td>
+    <td>Dec</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.December</code></td>
+    <td>December</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.A</code></td>
+    <td>A</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.AM</code></td>
+    <td>AM</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.P</code></td>
+    <td>P</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.PM</code></td>
+    <td>PM</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.TimeSeparator</code></td>
+    <td>:</td>
+  </tr>
+  <tr>
+    <td><code>DateTme.strings.DateSeparator</code></td>
+    <td>/</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<h1>TimeSpan Class</h1>
+<table width="100%" border="1" cellspacing="0" cellpadding="3">
+  <tr>
+    <th scope="col">Constructor</th>
+    <th scope="col">Description</th>
+  </tr>
+  <tr>
+    <td><code>TimeSpan(millis : int)</code></td>
+    <td>Creates a TimeSpan from the specified amount of milliseconds</td>
+  </tr>
+  <tr>
+    <td><code>TimeSpan(days : int, hours : int)</code></td>
+    <td>Creates a TimeSpan from the specified amount of days and hours</td>
+  </tr>
+  <tr>
+    <td><code>TimeSpan( hours : int, minutes : int, seconds : int)</code></td>
+    <td>Creates a TimeSpan from the specified amount of hours, minutes and seconds</td>
+  </tr>
+  <tr>
+    <td><code>TimeSpan(days : int, hours : int, minutes : int, seconds : int)</code></td>
+    <td>Creates a TimeSpan from the specified amount of days, hours, minutes and seconds</td>
+  </tr>
+  <tr>
+    <td><code>TimeSpan(days : int, hours : int, minutes : int, seconds : int, millis : int)</code></td>
+    <td>Creates a TimeSpan from the specified amount of days, hours, minutes, seconds and milliseconds.</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="3">
+  <tr>
+    <th scope="col"> Method</th>
+    <th scope="col">Return Value</th>
+    <th scope="col">Description</th>
+  </tr>
+  <tr>
+    <td><code>add(t : TimeSpan)</code></td>
+    <td><code>TimeSpan</code></td>
+    <td>Adds the specified time to the timespan and returns the result.</td>
+  </tr>
+  <tr>
+    <td><code>compareTo(t : TimeSpan)</code></td>
+    <td><code>int</code></td>
+    <td>-1, 0 or 1, depending on the compare result.</td>
+  </tr>
+  <tr>
+    <td><code>days()</code></td>
+    <td><code>int</code></td>
+    <td>Returns the days in the TimeSpan.</td>
+  </tr>
+  <tr>
+    <td><code>duration()</code></td>
+    <td><code>TimeSpan</code></td>
+    <td>Returns the absolute value of the TimeSpan.</td>
+  </tr>
+  <tr>
+    <td><code>equals(t : TimeSpan)</code></td>
+    <td><code>bool</code></td>
+    <td>Returns a bool indicating if the specified TimeSpan has the same value.</td>
+  </tr>
+  <tr>
+    <td><code>hours()</code></td>
+    <td><code>int</code></td>
+    <td>Returns the hours in the TimeSpan.</td>
+  </tr>
+  <tr>
+    <td><code>negate()</code></td>
+    <td><code>TimeSpan</code></td>
+    <td>Returns the negation of the time.</td>
+  </tr>
+  <tr>
+    <td><code>milliseconds()</code></td>
+    <td><code>int</code></td>
+    <td>Returns the milliseconds in the TimeSpan.</td>
+  </tr>
+  <tr>
+    <td><code>minutes()</code></td>
+    <td><code>int</code></td>
+    <td>Returns the minutes in the TimeSpan.</td>
+  </tr>
+  <tr>
+    <td><code>seconds()</code></td>
+    <td><code>int</code></td>
+    <td>Returns the seconds int he TimeSpan.</td>
+  </tr>
+  <tr>
+    <td><code>totalDays()</code></td>
+    <td><code>double</code></td>
+    <td>Returns the total days in the TimeSpan.</td>
+  </tr>
+  <tr>
+    <td><code>totalHours()</code></td>
+    <td><code>double</code></td>
+    <td>Returns the total hours in the TimeSpan.</td>
+  </tr>
+  <tr>
+    <td><code>totalMinutes()</code></td>
+    <td><code>double</code></td>
+    <td>Returns the total minutes in the TimeSpan.</td>
+  </tr>
+  <tr>
+    <td><code>totalMilliseconds()</code></td>
+    <td><code>int</code></td>
+    <td>Returns the total of milliseconds in the TimeSpan.</td>
+  </tr>
+  <tr>
+    <td><code>totalSeconds()</code></td>
+    <td><code>double</code></td>
+    <td>Returns the total of seconds in the TimeSpan.</td>
+  </tr>
+  <tr>
+    <td><code>subtract(t : TimeSpan)</code></td>
+    <td><code>TimeSpan</code></td>
+    <td>Subtracts the specified TimeSpan to the value and returns the result.</td>
+  </tr>
+</table>
+<ul>
+  <li>You may find the source code of the classes at: <a href="http://sourceforge.net/projects/jsdatetime">http://sourceforge.net/projects/jsdatetime</a></li>
+  <li>More Projects at <a href="http://www.menendezpoo.com">www.menendezpoo.com</a></li>
+</ul>
+<p>&nbsp;</p>
+</body>
+</html>
