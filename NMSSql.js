@@ -3,6 +3,8 @@ const mssql = require('mssql');
 class NMSSql {
     constructor() {
         this._conn = null;
+
+        //console.log('constructor => entry filename:', require.main.filename);
     }
 
     async connect(opts) {

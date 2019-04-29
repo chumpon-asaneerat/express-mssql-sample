@@ -20,6 +20,9 @@ app.use(cookieparser("winnt@123"));
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 
+//console.log('__dirname:', __dirname);
+//console.log('require.main.filename:', require.main.filename);
+
 const iconpath = path.join(__dirname, "public", "favicon.ico");
 app.use(favicon(iconpath));
 
@@ -81,6 +84,12 @@ app.get("/", (req, res) => {
         res.json(result);
     })()
 });
+
+const nlib = require('./src/server/nlib');
+if (nlib) { 
+    console.log(nlib)
+    console.log(new nlib());
+}
 
 const server = app.listen(PORT, () => {
     console.log(`${APPNAME} listen on port: ${PORT}`);
