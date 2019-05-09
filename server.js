@@ -36,9 +36,10 @@ console.log('server.js running...');
     await dbconn.disconnect();
 })();
 */
-console.log(tsql.SqlTI('ntext '))
-console.log(tsql.SqlTI('nvarchar  (50 )'))
-console.log(tsql.SqlTI('decimal (  18, 2)'))
-console.log('decimal ( 18, 2 )'.toSqlTI()); // use string prototype.
+console.log(tsql.SqlTI('ntext ').sqltype)
+console.log(tsql.SqlTI('nvarchar  (50 )').sqltype)
+console.log(tsql.SqlTI('decimal (  18, 2)').sqltype)
+console.log(tsql.SqlTI('decimal (  18, 2)').sqltype)
+//console.log('decimal ( 18, 2 )'.toSqlTI()); // use string prototype.
 
 console.log('server.js finished.');

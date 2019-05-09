@@ -37,6 +37,7 @@ class TSql extends nsql.NSql {
     static datetimeoffset(scale) { return mssql.DateTimeOffset(scale); }
 
     static get guid() { return mssql.UniqueIdentifier; }
+    static get UniqueIdentifier() { return mssql.UniqueIdentifier; }
 
     static get default() { return mssql.NVarChar(50); }
 
@@ -49,22 +50,58 @@ class TSql extends nsql.NSql {
 exports.TSql = module.exports.TSql = TSql;
 
 class TSqlTI extends nsql.NSqlTI {
-    constructor(str) {
-        super(str);
-        this._convFromS = Object.keys(mssql);
-        console.log(this._convFromS);
-        //.map(p => { 
-        //    return  { id: p.toLowerCase(), name: p };
-        //});
-    }
+    constructor(str) { super(str); }
 
     get sqltype() {
-        //mssql.TYPES.Char()
-        mssql.Char()
-        
-        return 'implementing';
+        return (this.p1) 
+            ? (this.p2) 
+                ? TSqlTI.ConvFromS[this.type](this.p1, this.p2) 
+                : TSqlTI.ConvFromS[this.type](this.p1)
+            : TSqlTI.ConvFromS[this.type]();
+    }
+
+    static init() {
+        TSqlTI.ConvFromS = {
+            "nvarchar": mssql.NVarChar,
+            "nchar": mssql.NChar,
+            "varchar": mssql.VarChar,
+            "char": mssql.Char,
+            "ntext": mssql.NText,
+            "text": mssql.Text,
+
+            "bigint": mssql.BigInt,
+            "int": mssql.Int,
+            "smallint": mssql.SmallInt,
+            "tinyint": mssql.TinyInt,
+
+            "numeric": mssql.Numeric,
+            "decimal": mssql.Decimal,
+            "float": mssql.Float,
+            "real": mssql.Real,
+            "money": mssql.Money,
+            "smallmoney": mssql.SmallMoney,
+
+            "bit": mssql.Bit,
+            "varbinary": mssql.VarBinary,
+            "binary": mssql.Binary,
+            "image": mssql.Image,
+
+            "datetime": mssql.DateTime,
+            "date": mssql.Date,
+            "time": mssql.Time,
+            "smalldatetime": mssql.SmallDateTime,
+            "datetime2": mssql.DateTime2,
+            "datetimeoffset": mssql.DateTimeOffset,
+
+            "guid": mssql.UniqueIdentifier,
+            "UniqueIdentifier": mssql.UniqueIdentifier
+        }
+        TSqlTI.loaded = true;
     }
 }
+
+
+if (!TSqlTI.loaded) TSqlTI.init();
 
 exports.TSqlTI = module.exports.TSqlTI = TSqlTI;
 

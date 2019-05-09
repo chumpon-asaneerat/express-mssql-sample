@@ -38,6 +38,7 @@ class NSql {
     static datetimeoffset(scale) { return NSql.default; }
 
     static get guid() { return NSql.default; }
+    static get UniqueIdentifier() { return NSql.default; }
 
     static get default() { return null; }
 
@@ -55,7 +56,7 @@ class NSqlTI {
         let sidx = sStr.indexOf('(');
         let eidx = sStr.indexOf(')');
         // get type name only (in string)
-        this._type = (sidx !== -1) ? sStr.substring(0, sidx) : sStr;
+        this._type = (sidx !== -1) ? sStr.substring(0, sidx).trim() : sStr.trim();
         // split all parameters
         this._params = (sidx !== -1 && eidx !== -1) 
             ? this._params = sStr.substring(sidx + 1, eidx).split(',').map(p => Number(p))
