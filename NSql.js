@@ -1,3 +1,7 @@
+/**
+ * NSql abstract class. For each database (MSSql, Oracle, etc.) need to extends this class
+ * to handle type conversion, data manipulation, etc. based on each database driver.
+ */
 class NSql {
     // SQL Constant(s).
     static get MAX() { return NSql.default; }
@@ -35,19 +39,17 @@ class NSql {
 
     static get guid() { return NSql.default; }
 
-    static toType(str) { return NSql.default; }
-
     static get default() { return null; }
 
-    static toType(str) {
-        let result = new NSqlDataType(str);
-        return result;
-    }
+    static SqlTI(str) { return new NSqlTI(str); }
 };
 
 exports.NSql = module.exports.NSql = NSql;
 
-class NSqlDataType {
+/**
+ * The Sql data Type Information class.
+ */
+class NSqlTI {
     constructor(str) {
         let sStr = str.trim().toLowerCase();
         let sidx = sStr.indexOf('(');
@@ -55,25 +57,31 @@ class NSqlDataType {
         // get type name only (in string)
         this._type = (sidx !== -1) ? sStr.substring(0, sidx) : sStr;
         // split all parameters
-        this._params = (sidx !== -1 && eidx !== -1) ?
-            this._params = sStr.substring(sidx + 1, eidx).split(',') : null;
+        this._params = (sidx !== -1 && eidx !== -1) 
+            ? this._params = sStr.substring(sidx + 1, eidx).split(',').map(p => Number(p))
+            : null;
     }
 
-    get type() { return this.type; }
-    get p1() { 
-        return (this._params && this._params.length >= 1) ? Number(this._params[0].trim()) : 0;
+    get type() { return this._type; }
+    get p1() {
+        return (this._params && this._params.length >= 1) ? this._params[0] : 0;
     }
     get p2() {
-        return (this._params && this._params.length >= 2) ? Number(this._params[1].trim()) : 0;
+        return (this._params && this._params.length >= 2) ? this._params[1] : 0;
     }
+
+    get sqltype() { return 'Not implements.'; }
 };
 
-exports.NSqlDataType = module.exports.NSqlDataType = NSqlDataType;
+exports.NSqlTI = module.exports.NSqlTI = NSqlTI;
 
 // Note: cannot use arrow function in prototype because the arrow function will bind to difference
 // scope. So prefer to used old style function declaration here.
-String.prototype.getSqlDataType = function() {
-    let result = new NSqlDataType(this);
+/**
+ * Gets Sql DataType information from String.
+ */
+String.prototype.toSqlTI = function() {
+    let result = new NSqlTI(this);
     return result;
 };
 

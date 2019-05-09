@@ -15,7 +15,7 @@ const opts = {
 };
 
 console.log('server.js running...');
-
+/*
 (async() => {
     let dbconn = new sqlserver();
     await dbconn.connect(opts);
@@ -26,7 +26,7 @@ console.log('server.js running...');
     ];
     let val = { param1: 123, param2: 456 };
     let ret = await dbconn.adhoc('select @param1 as value; select @param2 as value2', val, params);
-    //console.log('ret:', ret.data);
+    
     console.log('recordsets:', ret.data.recordsets);
     console.log('recordset:', ret.data.recordset);
     console.log('output:', ret.data.output);
@@ -35,10 +35,10 @@ console.log('server.js running...');
     // disconnect it.
     await dbconn.disconnect();
 })();
-
-console.log(tsql.toType('ntext'))
-console.log(tsql.toType('nvarchar(50)'))
-console.log(tsql.toType('decimal(18, 2)'))
-console.log('decimal(18, 2)'.getSqlDataType()); // use string prototype.
+*/
+console.log(tsql.SqlTI('ntext '))
+console.log(tsql.SqlTI('nvarchar  (50 )'))
+console.log(tsql.SqlTI('decimal (  18, 2)'))
+console.log('decimal ( 18, 2 )'.toSqlTI()); // use string prototype.
 
 console.log('server.js finished.');

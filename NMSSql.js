@@ -40,13 +40,33 @@ class TSql extends nsql.NSql {
 
     static get default() { return mssql.NVarChar(50); }
 
-    static toType(str) {
-        let result = super.toType(str);
+    static SqlTI(str) {
+        let result = new TSqlTI(str);
         return result;
     }
 };
 
 exports.TSql = module.exports.TSql = TSql;
+
+class TSqlTI extends nsql.NSqlTI {
+    constructor(str) {
+        super(str);
+        this._convFromS = Object.keys(mssql);
+        console.log(this._convFromS);
+        //.map(p => { 
+        //    return  { id: p.toLowerCase(), name: p };
+        //});
+    }
+
+    get sqltype() {
+        //mssql.TYPES.Char()
+        mssql.Char()
+        
+        return 'implementing';
+    }
+}
+
+exports.TSqlTI = module.exports.TSqlTI = TSqlTI;
 
 class NMSSqlServer {
     constructor() {
