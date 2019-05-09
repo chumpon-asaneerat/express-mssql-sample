@@ -1,4 +1,52 @@
 const mssql = require('mssql');
+const nsql = require('./NSql');
+
+class TSql extends nsql.NSql {
+    // SQL Constant(s).
+    static MAX() { return mssql.MAX; }
+    // SQL Types.
+    static nvarchar(length) { return mssql.NVarChar(length); }
+    static nchar(length) { return mssql.NChar(length); }
+    static varchar(length) { return mssql.VarChar(length); }
+    static char(length) { return mssql.Char(length); }
+    static get ntext() { return mssql.NText; }
+    static get text() { return mssql.Text; }
+
+    static get bigint() { return mssql.BigInt; }
+    static get int() { return mssql.Int; }
+    static get smallint() { return mssql.SmallInt; }
+    static get tinyint() { return mssql.TinyInt; }
+
+    static numeric(precision, scale) { return mssql.Numeric(precision, scale); }
+    static decimal(precision, scale) { return mssql.Decimal(precision, scale); }
+    static get float() { return mssql.Float; }
+    static get real() { return mssql.Real; }
+    static get money() { return mssql.Money; }
+    static get smallmoney() { return mssql.SmallMoney; }
+
+    static get bit() { return mssql.Bit; }
+    static varbinary(length) { return mssql.VarBinary; }
+    static get binary() { return mssql.Binary; }
+    static get image() { return mssql.Image; }
+
+    static get datetime() { return mssql.DateTime; }
+    static get date() { return mssql.Date; }
+    static time(scale) { return mssql.Time(scale); }
+    static get smalldatetime() { return mssql.SmallDateTime; }
+    static datetime2(scale) { return mssql.DateTime2(scale); }
+    static datetimeoffset(scale) { return mssql.DateTimeOffset(scale); }
+
+    static get guid() { return mssql.UniqueIdentifier; }
+
+    static get default() { return mssql.NVarChar(50); }
+
+    static toType(str) {
+        let result = super.toType(str);
+        return result;
+    }
+};
+
+exports.TSql = module.exports.TSql = TSql;
 
 class NMSSqlServer {
     constructor() {
@@ -60,7 +108,7 @@ class NMSSqlServer {
         try {
             // use prepare-unprepare.
             let ps = new mssql.PreparedStatement(this._conn); // create PreparedStatement Object.
-            params.forEach(p => ps.input(p.name, p.sqltype)); // extract parameter(s).
+            params.forEach(p => ps.input(p.name, p.type)); // extract parameter(s).
             await ps.prepare(queryText);
             let ret = await ps.execute(pObj);
             await ps.unprepare();
