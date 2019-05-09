@@ -1,5 +1,4 @@
 const nsql = require("./NMSSql");
-const mssqlserver = new nsql.NMSSqlServer();
 const opts = {
     server: 'localhost',
     database: 'TestDb7x3',
@@ -14,5 +13,17 @@ const opts = {
 
 console.log('server.js running...');
 
+(async() => {
+    let dbconn = new nsql.NMSSqlServer();
+    let connObj = await dbconn.connect(opts);
+    if (connObj) {
+        console.log('success get connect result object.');
+        if (dbconn === connObj) {
+            console.log('same connection pool instance.');
+        }
+        else console.log('difference connection pool instance.');
+    }
+    await dbconn.disconnect();
+})();
 
 console.log('server.js finished.');
