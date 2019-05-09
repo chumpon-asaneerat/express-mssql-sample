@@ -40,14 +40,14 @@ class NSql {
     static get default() { return null; }
 
     static toType(str) {
-        let result = new NSqlTypeInfo(str);
+        let result = new NSqlDataType(str);
         return result;
     }
 };
 
 exports.NSql = module.exports.NSql = NSql;
 
-class NSqlTypeInfo {
+class NSqlDataType {
     constructor(str) {
         let sStr = str.trim().toLowerCase();
         let sidx = sStr.indexOf('(');
@@ -68,4 +68,12 @@ class NSqlTypeInfo {
     }
 };
 
-exports.NSqlTypeInfo = module.exports.NSqlTypeInfo = NSqlTypeInfo;
+exports.NSqlDataType = module.exports.NSqlDataType = NSqlDataType;
+
+// Note: cannot use arrow function in prototype because the arrow function will bind to difference
+// scope. So prefer to used old style function declaration here.
+String.prototype.getSqlDataType = function() {
+    let result = new NSqlDataType(this);
+    return result;
+};
+

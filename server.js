@@ -39,5 +39,6 @@ console.log('server.js running...');
 console.log(tsql.toType('ntext'))
 console.log(tsql.toType('nvarchar(50)'))
 console.log(tsql.toType('decimal(18, 2)'))
+console.log('decimal(18, 2)'.getSqlDataType()); // use string prototype.
 
 console.log('server.js finished.');
