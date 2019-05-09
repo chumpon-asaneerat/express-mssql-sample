@@ -6,10 +6,6 @@ class NMSSqlServer {
         this._err = null;
     };
     /**
-     * Gets the ConnectionPool Instance. (Remove later).
-     */
-    get connection() { return this._conn; }
-    /**
      * Checks is connection is in connected status.
      */
     get connected() { return (this._conn && this._conn.connected); }
@@ -46,7 +42,17 @@ class NMSSqlServer {
         // reset variables.
         this._err = null;
         this._conn = null;
-    };    
+    };
+    /**
+     * Create new Request object from current connection pool.
+     */
+    request() {
+        let req = null;
+        if (!this._conn) return req;
+        // create request object from current connection pool.
+        req = new mssql.Request(this._conn);
+        return req;
+    };
 };
 
 exports.NMSSqlServer = module.exports.NMSSqlServer = NMSSqlServer;

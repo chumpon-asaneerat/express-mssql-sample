@@ -17,7 +17,10 @@ console.log('server.js running...');
     let dbconn = new nsql.NMSSqlServer();
     await dbconn.connect(opts);
     // do some request to database.
-
+    let req = dbconn.request();
+    if (req) {
+        console.log('request created.');
+    }
     // disconnect it.
     await dbconn.disconnect();
 })();
