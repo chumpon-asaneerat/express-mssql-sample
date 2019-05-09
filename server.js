@@ -15,14 +15,10 @@ console.log('server.js running...');
 
 (async() => {
     let dbconn = new nsql.NMSSqlServer();
-    let connObj = await dbconn.connect(opts);
-    if (connObj) {
-        console.log('success get connect result object.');
-        if (dbconn === connObj) {
-            console.log('same connection pool instance.');
-        }
-        else console.log('difference connection pool instance.');
-    }
+    await dbconn.connect(opts);
+    // do some request to database.
+
+    // disconnect it.
     await dbconn.disconnect();
 })();
 
