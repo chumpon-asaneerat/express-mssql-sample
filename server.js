@@ -1,118 +1,112 @@
-// Constructor and extends
-class Creature {
-    constructor(name) {
-        this.name = name;
-    }
-    shout() {
-        console.log(`I'm ${this.name}! Oorah!!`);
-    }
-}
+// mixin 1: simple concept.
 
-class Dwarf extends Creature {
-    constructor(name) {
-        super(name);
-        this.tall = false;
-    }
-    hitWithMaze() {
-        console.log("Smash!");
-    }
-}
+let mydetails = {}
+let firstname = { firstname: "Nnamdi" }
+let surname = { surname: "Chidume" }
+let occupation = { occupation: "Software Developer" }
+let nationality = { nationality: "Nigerian" }
 
-class Wizard extends Creature {
-    castASpell() {
-        console.log("You shall not pass!");
-    }
-}
+console.log(mydetails)
+Object.assign(mydetails, surname, firstname, occupation, nationality);
+console.log(mydetails)
 
-let dwarf = new Dwarf('Thorin');
-let wizard = new Wizard('Gandalf');
-
-dwarf.hitWithMaze(); // "Smash!"
-wizard.castASpell(); //  "You shall not pass!"
-
-// mixin - Let’s assign a new move to our Dwarf.
-const Weaponry = {
-    hitWithSword() {
-        console.log("Swoosh!");
-    }
-};
-Object.assign(Dwarf.prototype, Weaponry);
-dwarf.hitWithSword(); // "Swoosh!"
-
-// Functional Mixin: A better approach implies turning mixins into functions 
-// into which constructor can be injected.
-const Armed = (target) =>
-    Object.assign(target, {
-        hitWith2Sword() {
-            console.log("Swoosh! Swoosh!");
+// mixin 2: Implementing our own Object.assign
+Object.prototype.assign = function assign(dest, ...src) {
+    if (typeof dest == 'object') {
+        for (let s of src) {
+            if (typeof s == 'object') {
+                for (prp of Object.keys(s)) {
+                    dest[prp] = s[prp]
+                }
+            }
         }
-    });
-Armed(Dwarf.prototype);
-dwarf.hitWith2Sword(); // "Swoosh! Swoosh!"
-
-// Factory function.
-const proto = {
-    shotAnArrow() {
-        console.log("Sling!");
     }
-};
-const archerFactory = (name) => Object.assign(Object.create(proto), {
-    name
-});
-let archer = archerFactory('Legolas');
-archer.shotAnArrow(); // "Sling!"
-
-// Classes can be used as a statement and an expression as well and 
-// (since an expression can return a new class when it’s evaluated) 
-// we can use them like factories.
-//
-// Using this approch, the same behaviour delegation is achieved and:
-// 1. prototypes are not directly mutated
-// 2. super keyword still works inside methods of the subclass and the mixins
-// 3. composition is preserved even when two mixins define the same method
-
-let Magic = (superclass) => class extends superclass {
-    shout() {
-        if (super.shout) super.shout();
-        console.log('Power and wisdom.');
-    }
-};
-let Fighting = (superclass) => class extends superclass {
-    shout() {
-        if (super.shout) super.shout();
-        console.log('Strength an courage.');
-    }
-};
-class DwarfWizard extends Fighting(Magic(Creature)) {
-    /*
-    courseObjects(object = {}) {
-        object.curse = true;
-        return object;
-    }
-    */
 }
-let dwarfWizard = new DwarfWizard('Thordalf');
-dwarfWizard.shout(); // "I'm Thordalf! Oorah!! Power and wisdom. Strength an courage."
 
-// The Decorator pattern dynamically adds behaviour to existing classes
-function badassery(creature) {
-    let fn = creature.hitWithMaze;
-    creature.hitWithMaze = () => {
-        creature.shout();
-        fn();
-    };
-}
-badassery(dwarf);
-dwarf.hitWithMaze(); // "I'm Thorin! Oorah!! Swish!"
+mydetails = {}
+firstname = { firstname: "Nnamdi" }
+surname = { surname: "Chidume" }
+occupation = { occupation: "Software Developer" }
+nationality = { nationality: "Nigerian" }
+Object.assign(mydetails, surname, firstname, occupation, nationality);
+console.log(mydetails)
 
-// Python-style implementation of Decorators in ECMAScript - not supports yet.
-// Decorator becomes a function or an expression returning a function that takes a class 
-// to be modified as an argument. It can be applied by prefixing it with “@” character 
-// and placing it on top of the constructor we want to be the target of our decorator.
-/*
-function healing(creature) {
-  creature.healPower = true;
+// mixin 3: Mixing Classes
+class Car { 
+    constructor() {
+        console.log('car');
+    }
 }
-@healing
-class Wizard2 { }
-*/
+class Wheel {
+    drive() {
+        console.log('  drive');
+    }
+}
+class Tyre {
+    brake() {
+        console.log('  brake');
+    }
+}
+class Steering {
+    steer(x, y) {
+        console.log('  steer:', x, ',', y);
+    }
+}
+class Wiper {
+    wipe(speed) {
+        console.log('  wipe:', speed);
+    }
+}
+class Engine {
+    start() {
+        console.log('  start');
+    }
+}
+
+function classMixin(cls, ...src) {
+    for (let _cl of src) {
+        for (var key of Object.getOwnPropertyNames(_cl.prototype)) {
+            cls.prototype[key] = _cl.prototype[key]
+        }
+    }
+}
+
+classMixin(Car, Wheel, Tyre, Steering, Wiper, Engine)
+let car = new Car()
+car.brake() // brake
+car.wipe(30) // wipe
+car.start() // start
+car.drive() // drive
+car.steer(2, 3) // steer
+
+// mixin 4: Mixin and Inheritance
+class NewEngine {
+    sayBaseEngine() {
+        return `BaseEngine`
+    }
+}
+class ToyotaEngine extends NewEngine {
+    sayEngine() {
+        return `From Toyota: ${super.sayBaseEngine()}`
+    }
+}
+
+class Brake {
+    constructor() {
+        console.log('   Brake installed.');
+    }
+}
+class Drive {
+    constructor() {
+        console.log('   Drive installed.');
+    }
+}
+
+// make a Toyota car
+class Toyota extends Car {
+} 
+// apply our classMixin
+classMixin(Toyota, Brake, Drive, ToyotaEngine);
+let toyota = new Toyota();
+console.log(toyota.sayEngine())
+
