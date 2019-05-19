@@ -1,3 +1,10 @@
+// sample to call sp.
+let nmssql = require('./NMSSql.js');
+
+let conn = new nmssql();
+conn.connect();
+
+
 // mixin 1: figure out how to access main class instance data.
 
 // mixin 2: figure out how to set individual object with same class but difference
