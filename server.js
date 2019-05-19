@@ -1,8 +1,22 @@
 // sample to call sp.
 let nmssql = require('./NMSSql.js');
 
+const opts = {
+    server: 'localhost',
+    database: 'TestDb7x3',
+    user: 'sa',
+    password: 'winnt123',
+    pool: {
+        max: 10,
+        min: 0,
+        idleTimeoutMillis: 30000
+    }
+}
+
 let conn = new nmssql();
-conn.connect();
+conn.connect(opts);
+
+conn.disconnect();
 
 
 // mixin 1: figure out how to access main class instance data.

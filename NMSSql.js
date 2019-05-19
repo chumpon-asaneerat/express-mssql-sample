@@ -5,17 +5,23 @@ const mssql = require('mssql');
  */
 class NMSSql {
     constructor() {
-        console.log('Create new instance.');
+        this._conn = null;
     };
     /**
      * Connect to database.
      * @param {Object} opts The database connection option.
      */
-    async connect(opts) {}
+    async connect(opts) {
+        this._conn = new mssql.ConnectionPool(opts);
+        return await this._conn.connect(opts); // No callback so return promise.
+    }
     /**
      * Disconnect from database.
      */
-    async disconnect() {}
+    async disconnect() {
+        if (this._conn) await this._conn.close();
+        this._conn = null;
+    }
 }
 
 
