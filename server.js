@@ -19,7 +19,7 @@ let sp_opts = {
     name: 'GetCustomers',
     inputs: [
         { name:'langId', type: mssql.NVarChar(3), value: 'TH' },
-        { name:'customerId', type: mssql.NVarChar(30), value: null },
+        { name:'customerId', type: mssql.NVarChar(30), value: 'EDL-C2018080002' },
         { name:'enabled', type: mssql.Bit, value: true }
     ],
     outputs: []
