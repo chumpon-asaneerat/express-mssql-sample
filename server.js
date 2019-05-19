@@ -24,14 +24,19 @@ let sp_opts = {
     ],
     outputs: []
 }
+
+let callsp = async () => {
+    await conn.connect(opts);
+    let result = await conn.exec(sp_opts);
+    await conn.disconnect();
+    return result;
+}
+
 let result;
 (async () => {
-    await conn.connect(opts);
-    result = await conn.exec(sp_opts);
-    await conn.disconnect();
+    result = await callsp();
     console.log('Result:', result);
 })();
-
 
 // mixin 1: figure out how to access main class instance data.
 
