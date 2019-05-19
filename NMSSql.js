@@ -15,6 +15,17 @@ class NMSSql {
         this._conn = new mssql.ConnectionPool(opts);
         return await this._conn.connect(opts); // No callback so return promise.
     }
+
+    async exec(sp_opts) {
+        let req = new mssql.Request(this._conn);
+        sp_opts.inputs.forEach(p => {
+            req.input(p.name, p.type, p.value);
+        });
+        sp_opts.outputs.forEach(p => {
+            req.output(p.name, p.type, p.value);
+        });
+        return await req.execute(sp_opts.name);
+    }
     /**
      * Disconnect from database.
      */
@@ -26,3 +37,15 @@ class NMSSql {
 
 
 module.exports = exports = NMSSql;
+
+
+/*
+
+ALTER PROCEDURE [dbo].[GetCustomers] 
+(
+  @langId nvarchar(3) = NULL
+, @customerId nvarchar(30) = NULL
+, @enabled bit = NULL
+)
+
+*/

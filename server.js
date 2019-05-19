@@ -1,5 +1,6 @@
 // sample to call sp.
-let nmssql = require('./NMSSql.js');
+const mssql = require('mssql');
+const nmssql = require('./NMSSql.js');
 
 const opts = {
     server: 'localhost',
@@ -14,9 +15,22 @@ const opts = {
 }
 
 let conn = new nmssql();
-conn.connect(opts);
-
-conn.disconnect();
+let sp_opts = {
+    name: 'GetCustomers',
+    inputs: [
+        { name:'langId', type: mssql.NVarChar(3), value: 'TH' },
+        { name:'customerId', type: mssql.NVarChar(30), value: null },
+        { name:'enabled', type: mssql.Bit, value: true }
+    ],
+    outputs: []
+}
+let result;
+(async () => {
+    await conn.connect(opts);
+    result = await conn.exec(sp_opts);
+    await conn.disconnect();
+    console.log('Result:', result);
+})();
 
 
 // mixin 1: figure out how to access main class instance data.
