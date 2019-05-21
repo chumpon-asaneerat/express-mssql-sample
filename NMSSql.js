@@ -7,6 +7,7 @@ Implement guide:
 4. Verify need to generate js file to wrap around how to call stored procedure of function
 5. Add helper function for convert string data type to mssql data type.
 6. Implement nlib function to map exists input parameter (within object) with json sp descriptor.
+7. Checks how to convert async method to sync method with returns value.
 */
 
 const mssql = require('mssql');
