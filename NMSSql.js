@@ -1,3 +1,12 @@
+/*
+Implement guide:
+1. add PrepareStatement methods for adhoc query.
+2. add execute methods for execute stored procedure.
+3. add gulp task for generate sp json files to descripe sp call information 
+   (like parameter data typpe, length, precision/scale, etc.)
+4. Verify need to generate js file to wrap around how to call stored procedure of function
+*/
+
 const mssql = require('mssql');
 
 /**
