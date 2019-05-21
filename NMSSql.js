@@ -5,6 +5,8 @@ Implement guide:
 3. add gulp task for generate sp json files to descripe sp call information 
    (like parameter data typpe, length, precision/scale, etc.)
 4. Verify need to generate js file to wrap around how to call stored procedure of function
+5. Add helper function for convert string data type to mssql data type.
+6. Implement nlib function to map exists input parameter (within object) with json sp descriptor.
 */
 
 const mssql = require('mssql');
