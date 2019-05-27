@@ -13,6 +13,75 @@ Implement guide:
 const mssql = require('mssql');
 
 /**
+ * Mapped Type Convert functions.
+ */
+const Convert = {
+    "nvarchar": mssql.NVarChar,
+    "nchar": mssql.NChar,
+    "varchar": mssql.VarChar,
+    "char": mssql.Char,
+    "ntext": mssql.NText,
+    "text": mssql.Text,
+
+    "bigint": mssql.BigInt,
+    "int": mssql.Int,
+    "smallint": mssql.SmallInt,
+    "tinyint": mssql.TinyInt,
+
+    "numeric": mssql.Numeric,
+    "decimal": mssql.Decimal,
+    "float": mssql.Float,
+    "real": mssql.Real,
+    "money": mssql.Money,
+    "smallmoney": mssql.SmallMoney,
+
+    "bit": mssql.Bit,
+    "varbinary": mssql.VarBinary,
+    "binary": mssql.Binary,
+    "image": mssql.Image,
+
+    "datetime": mssql.DateTime,
+    "date": mssql.Date,
+    "time": mssql.Time,
+    "smalldatetime": mssql.SmallDateTime,
+    "datetime2": mssql.DateTime2,
+    "datetimeoffset": mssql.DateTimeOffset,
+
+    "guid": mssql.UniqueIdentifier,
+    "UniqueIdentifier": mssql.UniqueIdentifier
+}
+
+/**
+ * DbType helper class.
+ */
+DbType = class {
+    /**
+     * Extract type information fron string.
+     * @param {String} str Database Column Type in string.
+     */
+    static extract(str) {
+        let sStr = str.trim().toLowerCase();
+        let sidx = sStr.indexOf('(');
+        let eidx = sStr.indexOf(')');
+        let result = {};
+        // get type name only (in string)
+        result.type = (sidx !== -1) ? sStr.substring(0, sidx).trim() : sStr.trim();
+        // split all parameters
+        result.params =  (sidx !== -1 && eidx !== -1) 
+            ? sStr.substring(sidx + 1, eidx).split(',').map(p => Number(p))
+            : null;
+        return result;
+    }
+    static parse(str) {
+        let tObj = DbType.extract(str);
+        let sType = tObj.type;
+        let p1 = (tObj.params && tObj.params.length >= 1) ? tObj.params[0] : 0;
+        let p2 = (tObj.params && tObj.params.length >= 2) ? tObj.params[1] : 0;
+        return (p1) ? (p2) ? Convert[sType](p1, p2) : Convert[sType](p1) : Convert[sType]();
+    }
+}
+
+/**
  * The mssql database connection.
  */
 class NMSSql {
@@ -31,10 +100,10 @@ class NMSSql {
     async exec(sp_opts) {
         let req = new mssql.Request(this._conn);
         sp_opts.inputs.forEach(p => {
-            req.input(p.name, p.type, p.value);
+            req.input(p.name, DbType.parse(p.type), p.value);
         });
         sp_opts.outputs.forEach(p => {
-            req.output(p.name, p.type, p.value);
+            req.output(p.name, DbType.parse(p.type), p.value);
         });
         return await req.execute(sp_opts.name);
     }
@@ -47,13 +116,12 @@ class NMSSql {
     }
 }
 
-
 module.exports = exports = NMSSql;
 
 
 /*
 
-ALTER PROCEDURE [dbo].[GetCustomers] 
+ALTER PROCEDURE [dbo].[GetCustomers]
 (
   @langId nvarchar(3) = NULL
 , @customerId nvarchar(30) = NULL
