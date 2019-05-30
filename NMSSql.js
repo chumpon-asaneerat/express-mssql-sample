@@ -117,14 +117,10 @@ class NMSSql {
         qry_opts.outputs.forEach(p => {
             req.output(p.name, DbType.parse(p.type));
         });
-        console.log('1. prepare.');
         await ps.prepare(qry_opts.text);
-        console.log('2. execute.');
         let result = await ps.execute(qry_opts.value);
-        console.log('3. unprepare.');
         await ps.unprepare();
         return result;
-
     }
     /**
      * Disconnect from database.
