@@ -25,6 +25,17 @@ let sp_opts = {
     outputs: []
 }
 
+let query_opts = {
+    text: 'select @param as value',
+    inputs: [
+        { name:'param', type: "int" }
+    ],
+    outputs: [],
+    value: {
+        "param": 12345
+    }
+}
+
 let callsp = async () => {
     await conn.connect(opts);
     let result = await conn.exec(sp_opts);
@@ -32,9 +43,17 @@ let callsp = async () => {
     return result;
 }
 
+let callQry = async () => {
+    await conn.connect(opts);
+    let result = await conn.query(query_opts);
+    await conn.disconnect();
+    return result;
+}
+
 let result;
 (async () => {
-    result = await callsp();
+    //result = await callsp();
+    result = await callQry();
     console.log('Result:', result);
 })();
 

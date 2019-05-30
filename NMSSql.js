@@ -55,7 +55,7 @@ const Convert = {
 /**
  * DbType helper class.
  */
-DbType = class {
+class DbType {
     /**
      * Extract type information fron string.
      * @param {String} str Database Column Type in string.
@@ -107,6 +107,24 @@ class NMSSql {
             req.output(p.name, DbType.parse(p.type), p.value);
         });
         return await req.execute(sp_opts.name);
+    }
+
+    async query(qry_opts) {
+        let ps = new mssql.PreparedStatement(this._conn);
+        qry_opts.inputs.forEach(p => {
+            ps.input(p.name, DbType.parse(p.type));
+        });
+        qry_opts.outputs.forEach(p => {
+            req.output(p.name, DbType.parse(p.type));
+        });
+        console.log('1. prepare.');
+        await ps.prepare(qry_opts.text);
+        console.log('2. execute.');
+        let result = await ps.execute(qry_opts.value);
+        console.log('3. unprepare.');
+        await ps.unprepare();
+        return result;
+
     }
     /**
      * Disconnect from database.
