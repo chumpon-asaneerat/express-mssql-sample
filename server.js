@@ -1,6 +1,7 @@
 // sample to call sp.
 const mssql = require('mssql');
-const nmssql = require('./NMSSql.js');
+const nmssql = require('./NMSSql.js').NMSSql;
+const db7x3 = require('./NMSSql.js').TextDb7x3;
 
 const opts = {
     server: 'localhost',

@@ -89,6 +89,8 @@ class NMSSql {
     constructor() {
         this._conn = null;
     };
+
+    getConfigFile() { return ""; }
     /**
      * Connect to database.
      * @param {Object} opts The database connection option.
@@ -137,8 +139,15 @@ class NMSSql {
     }
 }
 
-module.exports = exports = NMSSql;
+module.exports.NMSSql = exports.NMSSql = NMSSql;
 
+class TextDb7x3 extends MMSSql {
+    getConfigFile() {
+        return "";
+    }
+}
+
+module.exports.TextDb7x3 = exports.TextDb7x3 = TextDb7x3;
 
 /*
 
