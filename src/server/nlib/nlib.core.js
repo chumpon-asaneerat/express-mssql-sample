@@ -38,20 +38,16 @@ class NDbConnection {
      * @param {Object} opts The query options.
      */
     async query(opts) {
-        let result = {};
         await setImmediate(() => { });
         console.log('execute query.');
-        return result;
     }
     /**
      * Execute stored procedure.
      * @param {Object} opts The stored procedure options.
      */
     async execute(opts) {
-        let result = {};
         await setImmediate(() => { });
         console.log('execute stored procedure.');
-        return result;
     }
     /**
      * disconnect from database.
