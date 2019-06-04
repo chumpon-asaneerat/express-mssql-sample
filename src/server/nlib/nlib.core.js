@@ -15,8 +15,17 @@ class NTimespan {
 }
 
 class NDbConnection {
-    constructor() {}
+    constructor() { }
 
+    /**
+     * Get Config Full File Name. (json object).
+     */
+    getConfigFileName() { return ''; }    
+
+    /**
+     * Checks is database conncted.
+     */
+    get isConnected() { return false; }
     /**
      * connect to database.
      */
@@ -29,16 +38,30 @@ class NDbConnection {
      * @param {Object} opts The query options.
      */
     async query(opts) {
+        let result = {};
         await setImmediate(() => { });
         console.log('execute query.');
+        if (!this.isConnected) {
+            console.log('No connection.');
+            result.err = 'No connection.';
+            return result;
+        }
+        return result;
     }
     /**
      * Execute stored procedure.
      * @param {Object} opts The stored procedure options.
      */
     async execute(opts) {
+        let result = {};
         await setImmediate(() => { });
         console.log('execute stored procedure.');
+        if (!this.isConnected) {
+            console.log('No connection.');
+            result.err = 'No connection.';
+            return result;
+        }
+        return result;
     }
     /**
      * disconnect from database.
