@@ -1,8 +1,7 @@
 const nlib = require('./src/server/nlib/nlib.core');
-const DateTime = nlib.date;
+const DateTime = nlib.NDateTime;
+
+console.log('static today:', DateTime.today);
 
 let dt = new DateTime();
-
-console.log(nlib.date.today);
-
-console.log(dt.today);
+console.log('instance today:', dt.today);

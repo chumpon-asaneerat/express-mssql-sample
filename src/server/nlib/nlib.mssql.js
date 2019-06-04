@@ -1,7 +1,7 @@
 const mssql = require('mssql');
 const nlib = require('./nlib.core');
 
-class NSqlServer extends nlib.NDataAccess { 
+class NSqlServer extends nlib.NDbConnection { 
     constructor() {}
 }
 

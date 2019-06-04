@@ -1,15 +1,20 @@
-/**
- * The date utilitie class.
- */
-class DateUtils {
+class NDateTime {
+    constructor() {}
+    /**
+     * Gets today date.
+     */
     get today() { return new Date(); }
+    /**
+     * Gets today date. (static).
+     */
     static get today() { return new Date(); }
 }
 
-/**
- * The common data access abstract class.
- */
-class NDataAccess {
+class NTimespan {
+    constructor() {}
+}
+
+class NDbConnection {
     constructor() {}
 }
 
@@ -17,21 +22,29 @@ class NDataAccess {
  * The Nlib library.
  */
 const nlib = {
+    // common functions.
     /**
      * The log function.
      */
     log: (message, ...optionalParams) => {
         console.log(message, ...optionalParams);
     },
+    // Related classes.
     /**
-     * The date utilitie class.
+     * The .NET like DateTime class.
      */
-    date: DateUtils,
+    NDateTime: NDateTime,
+    /**
+     * The .NET like Timespan class.
+     */
+    NTimespan: NTimespan,
+    /**
+     * The common Database Connection abstract class.
+     */
+    NDbConnection: NDbConnection
 }
 
 /**
  * The Nlib library.
  */
 module.exports = exports = nlib;
-
-module.exports.NDataAccess = exports.NDataAccess = NDataAccess;
