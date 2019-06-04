@@ -70,3 +70,10 @@ class NSqlServer extends nlib.NDbConnection {
 }
 
 module.exports.NSqlServer = exports.NSqlServer = NSqlServer;
+
+/*
+(() => {
+    // Test Root Path.
+    console.log('nlib.mssql.js root path detected:', nlib.paths.root);
+})();
+*/

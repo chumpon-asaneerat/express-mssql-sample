@@ -1,3 +1,6 @@
+const path = require('path');
+const rootPath = path.dirname(require.main.filename);
+
 class NDateTime {
     constructor() {}
     /**
@@ -62,6 +65,10 @@ class NDbConnection {
  * The Nlib library.
  */
 const nlib = {
+    // common paths.
+    paths: {
+        root: rootPath
+    },
     // common functions.
     /**
      * The log function.

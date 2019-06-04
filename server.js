@@ -36,3 +36,5 @@ ex1();
     await ex1();
 })();
 */
+
+console.log('root:', nlib.paths.root);
