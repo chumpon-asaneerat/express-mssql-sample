@@ -41,11 +41,6 @@ class NDbConnection {
         let result = {};
         await setImmediate(() => { });
         console.log('execute query.');
-        if (!this.isConnected) {
-            console.log('No connection.');
-            result.err = 'No connection.';
-            return result;
-        }
         return result;
     }
     /**
@@ -56,11 +51,6 @@ class NDbConnection {
         let result = {};
         await setImmediate(() => { });
         console.log('execute stored procedure.');
-        if (!this.isConnected) {
-            console.log('No connection.');
-            result.err = 'No connection.';
-            return result;
-        }
         return result;
     }
     /**

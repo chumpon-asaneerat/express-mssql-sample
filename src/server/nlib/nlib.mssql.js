@@ -18,9 +18,8 @@ class NSqlServer extends nlib.NDbConnection {
      * connect to database.
      */
     async connect() {
-        await setImmediate(() => { });
         console.log('connect.');
-        if (this.isConnected) return; // skip if is connected.
+        if (this._conn) return; // skip if is connected.
     }
     /**
      * Execute Query.
@@ -28,12 +27,12 @@ class NSqlServer extends nlib.NDbConnection {
      */
     async query(opts) {
         let result = {};
-        await setImmediate(() => { });
         console.log('execute query.');
-        if (!this.isConnected) {
-            console.log('No connection.');
-            result.err = 'No connection.';
-            return result;
+        try {
+            result.data = {};
+        }
+        catch (err) {
+            result.err = err;
         }
         return result;
     }
@@ -43,12 +42,12 @@ class NSqlServer extends nlib.NDbConnection {
      */
     async execute(opts) {
         let result = {};
-        await setImmediate(() => { });
         console.log('execute stored procedure.');
-        if (!this.isConnected) {
-            console.log('No connection.');
-            result.err = 'No connection.';
-            return result;
+        try {
+            result.data = {};
+        }
+        catch (err) {
+            result.err = err;
         }
         return result;
     }
@@ -56,9 +55,8 @@ class NSqlServer extends nlib.NDbConnection {
      * disconnect from database.
      */
     async disconnect() {
-        await setImmediate(() => { });
         console.log('disconnect.');
-        if (this.isConnected) { }
+        if (this._conn) { }
         this._conn = null;
     }
 }
