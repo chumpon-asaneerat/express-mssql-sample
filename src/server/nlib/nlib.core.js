@@ -7,6 +7,13 @@ class DateUtils {
 }
 
 /**
+ * The common data access abstract class.
+ */
+class NDataAccess {
+    constructor() {}
+}
+
+/**
  * The Nlib library.
  */
 const nlib = {
@@ -19,10 +26,12 @@ const nlib = {
     /**
      * The date utilitie class.
      */
-    date: DateUtils
+    date: DateUtils,
 }
 
 /**
  * The Nlib library.
  */
 module.exports = exports = nlib;
+
+module.exports.NDataAccess = exports.NDataAccess = NDataAccess;
