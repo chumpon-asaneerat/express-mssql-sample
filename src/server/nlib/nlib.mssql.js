@@ -1,8 +1,12 @@
 const mssql = require('mssql');
 const nlib = require('./nlib.core');
 
+/**
+ * The Microsoft SQL Server database connection base class.
+ */
 class NSqlServer extends nlib.NDbConnection { 
     constructor() {
+        super();
         this._conn = null;
     }
     /**
@@ -18,7 +22,8 @@ class NSqlServer extends nlib.NDbConnection {
      * connect to database.
      */
     async connect() {
-        console.log('connect.');
+        console.log('NSqlServer: connect.');
+        await setImmediate(() => { });
         if (this._conn) return; // skip if is connected.
     }
     /**
@@ -27,7 +32,8 @@ class NSqlServer extends nlib.NDbConnection {
      */
     async query(opts) {
         let result = {};
-        console.log('execute query.');
+        console.log('NSqlServer: execute query.');
+        await setImmediate(() => { });
         try {
             result.data = {};
         }
@@ -42,7 +48,8 @@ class NSqlServer extends nlib.NDbConnection {
      */
     async execute(opts) {
         let result = {};
-        console.log('execute stored procedure.');
+        console.log('NSqlServer: execute stored procedure.');
+        await setImmediate(() => { });
         try {
             result.data = {};
         }
@@ -55,7 +62,8 @@ class NSqlServer extends nlib.NDbConnection {
      * disconnect from database.
      */
     async disconnect() {
-        console.log('disconnect.');
+        console.log('NSqlServer: disconnect.');
+        await setImmediate(() => { });
         if (this._conn) { }
         this._conn = null;
     }

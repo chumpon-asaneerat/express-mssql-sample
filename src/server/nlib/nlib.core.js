@@ -31,7 +31,7 @@ class NDbConnection {
      */
     async connect() {
         await setImmediate(() => { });
-        console.log('connect.');
+        console.log('NDbConnection: connect.');
     }
     /**
      * Execute Query.
@@ -39,7 +39,7 @@ class NDbConnection {
      */
     async query(opts) {
         await setImmediate(() => { });
-        console.log('execute query.');
+        console.log('NDbConnection: execute query.');
     }
     /**
      * Execute stored procedure.
@@ -47,14 +47,14 @@ class NDbConnection {
      */
     async execute(opts) {
         await setImmediate(() => { });
-        console.log('execute stored procedure.');
+        console.log('NDbConnection: execute stored procedure.');
     }
     /**
      * disconnect from database.
      */
     async disconnect() {
         await setImmediate(() => { });
-        console.log('disconnect.');
+        console.log('NDbConnection: disconnect.');
     }
 }
 

@@ -15,4 +15,24 @@ let fn = (async () => {
     await db.disconnect();
 });
 
-fn();
+//fn();
+
+const TestDb7x3 = require('./src/server/TestDb7x3').TestDb7x3;
+
+let ex1 = (async () => {
+    let db = new TestDb7x3();
+    await db.connect();
+    await db.query();
+    await db.execute();
+    await db.disconnect();
+});
+
+ex1();
+
+/*
+// Run all in sync.
+(async () => {
+    await fn();
+    await ex1();
+})();
+*/
