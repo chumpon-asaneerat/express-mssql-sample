@@ -38,3 +38,55 @@ ex1();
 */
 
 console.log('root:', nlib.paths.root);
+
+/*
+The connection config should look like this
+
+let dbconfig = {
+    datasources: [
+        { 
+            name: 'TestDb7x3', 
+            provider: 'mssql', 
+            connection: {
+                server: 'localhost',
+                database: 'TestDb7x3',
+                username: 'sa',
+                password: 'winnt@123',
+                optional: {
+                    timeout: 1000
+                }
+            },
+            schema: {
+                tables: {
+                    lastUpdated: '2019-06-02...',
+                    items: [
+                        { name: 'table1', modified: '2019-06-02...' },
+                        { name: 'table2', modified: '2019-06-02...' }
+                    ]
+                },
+                procedures: {
+                    lastUpdated: '2019-06-02...',
+                    items: [
+                        { 
+                            name: 'sp1', type: 'SP', modified: '2019-06-02...', 
+                            parameters: {
+                                inputs: [],
+                                outputs: []
+                            }
+                        },
+                        { 
+                            name: 'fn1', type: 'FN', modified: '2019-06-02...', 
+                            parameters: {
+                                inputs: [],
+                                outputs: []
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}
+
+*/
+
