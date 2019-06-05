@@ -1,6 +1,9 @@
 const nlib = require('./src/server/nlib/nlib.core');
-const DateTime = nlib.NDateTime;
-const DbConnection = nlib.NDbConnection;
+
+const DateTime = require('./src/server/nlib/nlib.datetime').DateTime;
+const paths = require('./src/server/nlib/nlib.paths');
+
+const DbConnection = require('./src/server/nlib/nlib.dbconnection');
 
 console.log('static today:', DateTime.today);
 
@@ -17,10 +20,10 @@ let fn = (async () => {
 
 //fn();
 
-const TestDb7x3 = require('./src/server/TestDb7x3').TestDb7x3;
+const TestDb7x3 = require('./src/server/TestDb7x3');
 
 let ex1 = (async () => {
-    let db = new TestDb7x3();
+    let db = new TestDb7x3();    
     await db.connect();
     await db.query();
     await db.execute();
@@ -37,7 +40,7 @@ ex1();
 })();
 */
 
-console.log('root:', nlib.paths.root);
+console.log('root:', paths.root);
 
 /*
 The connection config should look like this

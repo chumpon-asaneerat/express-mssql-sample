@@ -1,26 +1,19 @@
 const mssql = require('mssql');
-const nlib = require('./nlib.core');
+const DbConnection = require('./nlib.dbconnection');
 
-/**
- * The Microsoft SQL Server database connection base class.
- */
-class NSqlServer extends nlib.NDbConnection { 
+/** The Microsoft SQL Server database connection base class. */
+class SqlServer extends DbConnection { 
+    /** Create new instance of NDbConnection. */
     constructor() {
         super();
         this._conn = null;
     }
-    /**
-     * Get Config Full File Name. (json object).
-     */
+    /** Get Config Full File Name. (json object). */
     getConfigFileName() { return ''; }
 
-    /**
-     * Checks is database conncted.
-     */
+    /** Checks is database conncted. */
     get isConnected() { return (this._conn); }
-    /**
-     * connect to database.
-     */
+    /** Connect to database. */
     async connect() {
         console.log('NSqlServer: connect.');
         await setImmediate(() => { });
@@ -58,9 +51,7 @@ class NSqlServer extends nlib.NDbConnection {
         }
         return result;
     }
-    /**
-     * disconnect from database.
-     */
+    /** Disconnect from database. */
     async disconnect() {
         console.log('NSqlServer: disconnect.');
         await setImmediate(() => { });
@@ -69,11 +60,13 @@ class NSqlServer extends nlib.NDbConnection {
     }
 }
 
-module.exports.NSqlServer = exports.NSqlServer = NSqlServer;
+/** The Microsoft SQL Server database connection base class. */
+module.exports = exports = SqlServer;
 
 /*
 (() => {
+    let paths = require('./nlib.paths');
     // Test Root Path.
-    console.log('nlib.mssql.js root path detected:', nlib.paths.root);
+    console.log('nlib.mssql.js root path detected:', paths.root);
 })();
 */
