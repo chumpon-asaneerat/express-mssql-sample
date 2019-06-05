@@ -1,14 +1,11 @@
 const nlib = require('./src/server/nlib/nlib.core');
 
 const DateTime = require('./src/server/nlib/nlib.datetime').DateTime;
-const paths = require('./src/server/nlib/nlib.paths');
-
-const DbConnection = require('./src/server/nlib/nlib.dbconnection');
-
 console.log('static today:', DateTime.today);
-
 let dt = new DateTime();
 console.log('instance today:', dt.today);
+
+const DbConnection = require('./src/server/nlib/nlib.dbconnection');
 
 let fn = (async () => {
     let db = new DbConnection();
@@ -40,6 +37,7 @@ ex1();
 })();
 */
 
+const paths = require('./src/server/nlib/nlib.paths');
 console.log('root:', paths.root);
 
 /*

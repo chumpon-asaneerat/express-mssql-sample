@@ -15,7 +15,7 @@ class SqlServer extends DbConnection {
     get isConnected() { return (this._conn); }
     /** Connect to database. */
     async connect() {
-        console.log('NSqlServer: connect.');
+        console.log('SqlServer: connect.');
         await setImmediate(() => { });
         if (this._conn) return; // skip if is connected.
     }
@@ -25,7 +25,7 @@ class SqlServer extends DbConnection {
      */
     async query(opts) {
         let result = {};
-        console.log('NSqlServer: execute query.');
+        console.log('SqlServer: execute query.');
         await setImmediate(() => { });
         try {
             result.data = {};
@@ -41,7 +41,7 @@ class SqlServer extends DbConnection {
      */
     async execute(opts) {
         let result = {};
-        console.log('NSqlServer: execute stored procedure.');
+        console.log('SqlServer: execute stored procedure.');
         await setImmediate(() => { });
         try {
             result.data = {};
@@ -53,7 +53,7 @@ class SqlServer extends DbConnection {
     }
     /** Disconnect from database. */
     async disconnect() {
-        console.log('NSqlServer: disconnect.');
+        console.log('SqlServer: disconnect.');
         await setImmediate(() => { });
         if (this._conn) { }
         this._conn = null;
