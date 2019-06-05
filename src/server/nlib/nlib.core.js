@@ -16,7 +16,7 @@ const nlib = {
      * Set dest object's properties that match src object's property with case insensitive.
      * If dest property not exist in src obj and overwrite flag is set so null value is assigned
      * otherwise if overwrite flag is not set the original dest property will not changed.
-     * */
+     */
     setValues: (dest, src, overwrite) => {
         let keys = Object.keys(dest);
         keys.forEach(key => {
